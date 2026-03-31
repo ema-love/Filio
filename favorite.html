@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio — My Favourites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body data-page="favorite">
+
+  <nav class="app-nav">
+    <div class="nav-left">
+      <a href="landing.html" class="nav-brand">F<em>olio</em></a>
+      <a href="index.html" class="nav-link">Browse</a>
+      <a href="favorite.html" class="nav-link active-rose">
+        <i data-lucide="heart" class="nav-icon"></i> Favourites
+        <span class="fav-badge rose" id="navFavBadge"></span>
+      </a>
+    </div>
+    <div class="nav-user">
+      <span class="nav-greeting">Hello, <strong id="navName">Reader</strong></span>
+      <div class="nav-avatar" id="navAvatar" onclick="toggleDropdown()">?</div>
+      <div class="nav-dropdown" id="navDropdown">
+        <div class="nav-dropdown-header">
+          <div class="dropdown-name" id="dropdownName">—</div>
+          <div class="dropdown-email" id="dropdownEmail">—</div>
+        </div>
+        <a href="index.html" class="dropdown-item"><i data-lucide="search" class="dropdown-icon"></i> Browse Books</a>
+        <a href="landing.html" class="dropdown-item"><i data-lucide="home" class="dropdown-icon"></i> Back to Home</a>
+        <button class="dropdown-item danger" onclick="handleLogout()">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="fav-header">
+    <p class="fav-eyebrow"><i data-lucide="heart"></i> Saved Books</p>
+    <h1 class="fav-title">My Favourites<span class="fav-title-sub">Your personal collection</span></h1>
+    <p class="fav-tagline" id="headerTagline">The books you love, all in one place.</p>
+  </header>
+
+  <div class="toolbar" id="toolbar" style="display:none">
+    <p class="toolbar-count">You have <strong id="favCount">0</strong> saved book<span id="favPlural">s</span></p>
+    <div class="toolbar-right">
+      <span class="toolbar-label">Sort:</span>
+      <select id="sortFavs" onchange="renderFavs()">
+        <option value="recent">Recently Added</option>
+        <option value="oldest">Oldest First</option>
+        <option value="title_asc">Title A–Z</option>
+        <option value="title_desc">Title Z–A</option>
+        <option value="year_new">Year (Newest)</option>
+        <option value="year_old">Year (Oldest)</option>
+      </select>
+      <button class="btn-clear-all" onclick="confirmClearAll()">Clear All</button>
+    </div>
+  </div>
+
+  <div class="section-divider" id="sectionDivider" style="display:none"><hr></div>
+
+  <div class="fav-empty" id="emptyState">
+    <div class="empty-heart"><i data-lucide="heart"></i></div>
+    <h2 class="empty-title">Your collection is waiting to be written.</h2>
+    <p class="empty-msg">You haven't saved any books yet.<br>Browse the library and tap the <i data-lucide="heart"></i> on any book to add it here.</p>
+    <a href="index.html" class="empty-cta">Browse Books →</a>
+  </div>
+
+  <div id="favsGrid"></div>
+
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><i data-lucide="x"></i></button>
+      <div class="modal-inner" id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="confirm-overlay" id="confirmOverlay" role="dialog">
+    <div class="confirm-backdrop" onclick="closeConfirm()"></div>
+    <div class="confirm-box">
+      <div class="confirm-icon">🗑️</div>
+      <h3 class="confirm-title">Clear all favourites?</h3>
+      <p class="confirm-msg">This will remove all <strong id="confirmCount">0</strong> books from your saved collection. This cannot be undone.</p>
+      <div class="confirm-actions">
+        <button class="confirm-cancel" onclick="closeConfirm()">Cancel</button>
+        <button class="confirm-ok" onclick="clearAll()">Yes, Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span id="toastMsg"></span>
+  </div>
+
+  <footer class="site-footer">
+    Data provided by <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a> /
+    <a href="https://archive.org" target="_blank" rel="noopener">Internet Archive</a> — Free &amp; Open Source ·
+    Built with the <a href="https://openlibrary.org/developers/api" target="_blank" rel="noopener">Open Library API</a>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

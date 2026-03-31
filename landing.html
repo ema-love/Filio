@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio — Your Literary Companion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body data-page="landing">
+
+  <nav class="landing-nav" id="navbar">
+    <a href="landing.html" class="nav-brand">F<em>olio</em></a>
+    <div class="landing-nav-links">
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="auth.html">Sign In</a>
+      <a href="auth.html" class="nav-cta">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Your Literary Companion</p>
+      <h1 class="hero-title">
+        Discover<br>your next<br>
+        <span class="accent">great read.</span>
+      </h1>
+      <p class="hero-desc">Folio connects you to millions of books from the Open Library. Search by title, author, or subject — filter, sort, and explore without limits.</p>
+      <div class="hero-actions">
+        <a href="auth.html" class="btn-primary">Start Reading →</a>
+        <a href="#features" class="btn-secondary">Learn More</a>
+      </div>
+      <div class="hero-stat-row">
+        <div class="hero-stat"><span class="num">36M+</span><span class="lbl">Books</span></div>
+        <div class="hero-stat"><span class="num">Free</span><span class="lbl">Always</span></div>
+        <div class="hero-stat"><span class="num">Open</span><span class="lbl">Source Data</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="books-stack">
+        <div class="book-spine book-4"></div>
+        <div class="book-spine book-2"></div>
+        <div class="book-spine book-1"></div>
+        <div class="book-spine book-3"></div>
+      </div>
+      <div class="hero-quote">
+        <blockquote>"A reader lives a thousand lives before he dies."</blockquote>
+        <cite>— George R.R. Martin</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Why Folio</p>
+      <h2 class="section-title">Everything you need to find your next book</h2>
+      <p class="section-desc">Built for readers who take their literary journeys seriously.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <span class="feature-icon"><i data-lucide="search"></i></span>
+        <h3 class="feature-title">Powerful Search</h3>
+        <p class="feature-desc">Search across titles, authors, and subjects simultaneously. The Open Library index gives you access to decades of publishing history.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon"><i data-lucide="filter"></i></span>
+        <h3 class="feature-title">Smart Filtering</h3>
+        <p class="feature-desc">Narrow results by decade, sort by relevance, publication date, or edition count. Find exactly what you're looking for, faster.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon"><i data-lucide="book-open"></i></span>
+        <h3 class="feature-title">Rich Book Details</h3>
+        <p class="feature-desc">Every result links to the full Open Library page — editions, covers, descriptions, subjects, and reading options all in one place.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon"><i data-lucide="globe"></i></span>
+        <h3 class="feature-title">Global Collection</h3>
+        <p class="feature-desc">From African literature to classical philosophy, science fiction to self-help — the collection spans every culture and discipline.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon"><i data-lucide="zap"></i></span>
+        <h3 class="feature-title">Instant Results</h3>
+        <p class="feature-desc">Results load in real time with graceful error handling. Whether the API is slow or your connection drops, Folio keeps you informed.</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon"><i data-lucide="unlock"></i></span>
+        <h3 class="feature-title">Always Free</h3>
+        <p class="feature-desc">Powered by the Internet Archive's Open Library — completely free, no subscriptions, no paywalls. Knowledge should be accessible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO DEMO -->
+  <section class="video-demo">
+    <div class="video-demo-inner">
+      <div class="video-demo-header reveal">
+        <h2 class="section-title">See it in action</h2>
+        <p class="section-desc">Watch how Folio makes discovering and organizing your books effortless.</p>
+      </div>
+      <div class="video-container reveal">
+        <iframe 
+          class="video-frame"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1" 
+          title="Folio Book Finder Demo" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <section class="showcase" id="about">
+    <div class="showcase-inner">
+      <div class="showcase-text reveal">
+        <p class="section-eyebrow">Inside the App</p>
+        <h2 class="section-title">A library at your fingertips</h2>
+        <p class="section-desc">Browse book covers, read summaries, explore subject tags, and jump straight to the full Open Library record — all without leaving the app.</p>
+        <ul class="showcase-list">
+          <li>Search by title, author, subject, or all fields at once</li>
+          <li>Filter results by decade of publication</li>
+          <li>Sort by relevance, date, title, or edition count</li>
+          <li>Click any book for a detailed modal with metadata</li>
+          <li>Direct link to the Open Library page for each book</li>
+        </ul>
+      </div>
+      <div class="showcase-mockup reveal">
+        <div class="mockup-bar">
+          <div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div>
+          <div class="mockup-url">folio.app/books</div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-search">
+            <div class="mockup-input">African literature…</div>
+            <div class="mockup-btn">Search</div>
+          </div>
+          <div class="mockup-cards">
+            <div class="mockup-card"><div class="mockup-card-img c1"></div><div class="mockup-card-text"><div class="mockup-card-title">Things Fall Apart</div><div class="mockup-card-author">Chinua Achebe</div></div></div>
+            <div class="mockup-card"><div class="mockup-card-img c2"></div><div class="mockup-card-text"><div class="mockup-card-title">Purple Hibiscus</div><div class="mockup-card-author">C.N. Adichie</div></div></div>
+            <div class="mockup-card"><div class="mockup-card-img c3"></div><div class="mockup-card-text"><div class="mockup-card-title">Season of Anomy</div><div class="mockup-card-author">W. Soyinka</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner reveal">
+      <h2 class="cta-title">Begin your next chapter today.</h2>
+      <p class="cta-desc">Create a free account and start searching millions of books from the world's largest open library.</p>
+      <div class="cta-actions">
+        <a href="auth.html" class="cta-btn">Create Free Account</a>
+        <a href="auth.html?mode=signin" class="cta-btn-ghost">Sign In</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer-dark">
+    <a href="landing.html" class="footer-brand">F<em>olio</em></a>
+    <div class="footer-links">
+      <a href="https://openlibrary.org/developers/api" target="_blank" rel="noopener">API Docs</a>
+      <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>
+      <a href="auth.html">Sign In</a>
+    </div>
+    <p class="footer-copy">Data: Open Library / Internet Archive</p>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

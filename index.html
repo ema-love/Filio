@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio — Book Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body data-page="index">
+
+  <nav class="app-nav">
+    <div class="nav-left">
+      <a href="landing.html" class="nav-brand">F<em>olio</em></a>
+      <a href="index.html" class="nav-link active">Browse</a>
+      <a href="favorite.html" class="nav-link">
+        <i data-lucide="heart" class="nav-icon"></i> Favourites
+        <span class="fav-badge" id="navFavBadge"></span>
+      </a>
+    </div>
+    <div class="nav-user">
+      <span class="nav-greeting">Hello, <strong id="navName">Reader</strong></span>
+      <div class="nav-avatar" id="navAvatar" onclick="toggleDropdown()">?</div>
+      <div class="nav-dropdown" id="navDropdown">
+        <div class="nav-dropdown-header">
+          <div class="dropdown-name" id="dropdownName">—</div>
+          <div class="dropdown-email" id="dropdownEmail">—</div>
+        </div>
+        <a href="favorite.html" class="dropdown-item"><i data-lucide="heart" class="dropdown-icon"></i> My Favourites</a>
+        <a href="landing.html" class="dropdown-item"><i data-lucide="home" class="dropdown-icon"></i> Back to Home</a>
+        <button class="dropdown-item danger" onclick="handleLogout()">Sign Out</button>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <p class="logo-eyebrow">Discover · Explore · Read</p>
+    <h1>Folio<span>Book Finder</span></h1>
+    <p class="tagline">Search millions of books from the Open Library collection</p>
+  </header>
+
+  <div class="search-section">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search by title, author, or subject…" autocomplete="off">
+      <button id="searchBtn">Search</button>
+    </div>
+  </div>
+
+  <div class="filters">
+    <span class="filter-label">Filter:</span>
+    <select id="searchType">
+      <option value="q">All Fields</option>
+      <option value="title">Title</option>
+      <option value="author">Author</option>
+      <option value="subject">Subject</option>
+    </select>
+    <span class="filter-label">Decade:</span>
+    <select id="decadeFilter">
+      <option value="">Any</option>
+      <option value="2020">2020s</option>
+      <option value="2010">2010s</option>
+      <option value="2000">2000s</option>
+      <option value="1990">1990s</option>
+      <option value="1980">1980s</option>
+      <option value="1970">1970s</option>
+      <option value="pre1970">Before 1970</option>
+    </select>
+    <span class="filter-label">Sort:</span>
+    <select id="sortBy">
+      <option value="relevance">Relevance</option>
+      <option value="new">Newest First</option>
+      <option value="old">Oldest First</option>
+      <option value="title_asc">Title A–Z</option>
+      <option value="title_desc">Title Z–A</option>
+      <option value="editions">Most Editions</option>
+    </select>
+  </div>
+
+  <div id="statusBar">
+    <span id="statusText"></span>
+    <div class="divider"></div>
+    <span id="statusQuery"></span>
+  </div>
+
+  <div id="welcome">
+    <div class="welcome-deco">"</div>
+    <p class="welcome-text" id="welcomeText">A reader lives a thousand lives before he dies.<br>Start your next adventure — search for a book above.</p>
+    <div class="quick-searches">
+      <span class="quick-tag" onclick="quickSearch('Gabriel García Márquez')">García Márquez</span>
+      <span class="quick-tag" onclick="quickSearch('African literature')">African Literature</span>
+      <span class="quick-tag" onclick="quickSearch('Chimamanda Ngozi Adichie')">Adichie</span>
+      <span class="quick-tag" onclick="quickSearch('philosophy')">Philosophy</span>
+      <span class="quick-tag" onclick="quickSearch('science fiction')">Sci-Fi</span>
+      <span class="quick-tag" onclick="quickSearch('Wole Soyinka')">Wole Soyinka</span>
+    </div>
+  </div>
+
+  <div class="loader" id="loader">
+    <div class="spinner"></div>
+    <p class="loader-text">Searching the stacks…</p>
+  </div>
+
+  <div class="state-block" id="errorState">
+    <div class="state-icon"><i data-lucide="alert-triangle"></i></div>
+    <div class="state-title">Something went wrong</div>
+    <p class="state-msg" id="errorMsg">Unable to reach the library. Please try again.</p>
+  </div>
+
+  <div class="state-block" id="emptyState">
+    <div class="state-icon"><i data-lucide="inbox"></i></div>
+    <div class="state-title">No books found</div>
+    <p class="state-msg">Try a different search term or adjust your filters.</p>
+  </div>
+
+  <div id="booksGrid"></div>
+
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" onclick="closeModal()"></div>
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close"><i data-lucide="x"></i></button>
+      <div class="modal-inner" id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span class="toast-heart"><i data-lucide="heart"></i></span>
+    <span id="toastMsg"></span>
+  </div>
+
+  <footer class="site-footer">
+    Data provided by <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a> /
+    <a href="https://archive.org" target="_blank" rel="noopener">Internet Archive</a> — Free &amp; Open Source ·
+    Built with the <a href="https://openlibrary.org/developers/api" target="_blank" rel="noopener">Open Library API</a>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

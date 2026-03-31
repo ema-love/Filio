@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folio — Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body data-page="auth">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="panel-brand">
+      <a href="landing.html" class="panel-logo">F<em>olio</em></a>
+    </div>
+    <div class="panel-main">
+      <div class="panel-quote">
+        <blockquote>"Not all those who wander are lost — but a good book always helps."</blockquote>
+        <cite>— Folio</cite>
+      </div>
+      <div class="panel-features">
+        <div class="panel-feature">
+          <div class="panel-feature-icon"><i data-lucide="search"></i></div>
+          <div class="panel-feature-text"><strong>Search 36 million books</strong> from the Open Library archive</div>
+        </div>
+        <div class="panel-feature">
+          <div class="panel-feature-icon"><i data-lucide="filter"></i></div>
+          <div class="panel-feature-text"><strong>Filter and sort</strong> by decade, title, author, and more</div>
+        </div>
+        <div class="panel-feature">
+          <div class="panel-feature-icon"><i data-lucide="book-open"></i></div>
+          <div class="panel-feature-text"><strong>Explore rich book details</strong> — covers, subjects, editions</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      Data by <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a> · Internet Archive
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="form-container">
+      <div class="form-header">
+        <p class="form-eyebrow">Welcome to Folio</p>
+        <h1 class="form-title" id="formTitle">Sign in to<br>your library.</h1>
+        <p class="form-subtitle" id="formSubtitle">Your books are waiting for you.</p>
+      </div>
+
+      <div class="form-tabs">
+        <div class="form-tab active" id="tabSignin" onclick="switchTab('signin')">Sign In</div>
+        <div class="form-tab" id="tabSignup" onclick="switchTab('signup')">Create Account</div>
+      </div>
+
+      <div class="form-alert" id="formAlert"></div>
+
+      <!-- SIGN IN -->
+      <form class="auth-form" id="signinForm" onsubmit="handleSignin(event)" novalidate>
+        <div class="field">
+          <label for="si-email">Email Address</label>
+          <input type="email" id="si-email" placeholder="you@example.com" autocomplete="email">
+          <span class="field-error" id="si-email-err">Please enter a valid email.</span>
+        </div>
+        <div class="field">
+          <label for="si-password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="si-password" placeholder="Your password" autocomplete="current-password">
+            <button type="button" class="toggle-pw" onclick="togglePw('si-password', this)">👁</button>
+          </div>
+          <span class="field-error" id="si-password-err">Password is required.</span>
+        </div>
+        <button type="submit" class="btn-submit" id="signinBtn">Sign In →</button>
+        <div class="form-divider"><span>or</span></div>
+        <button type="button" class="btn-google" onclick="handleGoogle()">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+        <p class="form-footer-note">Don't have an account? <a href="#" onclick="switchTab('signup'); return false;">Create one free</a></p>
+      </form>
+
+      <!-- SIGN UP -->
+      <form class="auth-form hidden" id="signupForm" onsubmit="handleSignup(event)" novalidate>
+        <div class="field">
+          <label for="su-name">Full Name</label>
+          <input type="text" id="su-name" placeholder="Your name" autocomplete="name">
+          <span class="field-error" id="su-name-err">Name is required.</span>
+        </div>
+        <div class="field">
+          <label for="su-email">Email Address</label>
+          <input type="email" id="su-email" placeholder="you@example.com" autocomplete="email">
+          <span class="field-error" id="su-email-err">Please enter a valid email.</span>
+        </div>
+        <div class="field">
+          <label for="su-password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="su-password" placeholder="Min. 8 characters" autocomplete="new-password" oninput="checkStrength(this.value)">
+            <button type="button" class="toggle-pw" onclick="togglePw('su-password', this)">👁</button>
+          </div>
+          <div class="pw-strength" id="pw-strength" style="display:none">
+            <div class="pw-strength-bar"><div class="pw-strength-fill" id="pw-fill"></div></div>
+            <span class="pw-strength-label" id="pw-label"></span>
+          </div>
+          <span class="field-error" id="su-password-err">Password must be at least 8 characters.</span>
+        </div>
+        <div class="field">
+          <label for="su-confirm">Confirm Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="su-confirm" placeholder="Repeat your password" autocomplete="new-password">
+            <button type="button" class="toggle-pw" onclick="togglePw('su-confirm', this)">👁</button>
+          </div>
+          <span class="field-error" id="su-confirm-err">Passwords do not match.</span>
+        </div>
+        <label class="field-check">
+          <input type="checkbox" id="su-terms">
+          <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+        </label>
+        <span class="field-error" id="su-terms-err" style="margin-top:-0.5rem">You must agree to continue.</span>
+        <button type="submit" class="btn-submit" id="signupBtn">Create Account →</button>
+        <div class="form-divider"><span>or</span></div>
+        <button type="button" class="btn-google" onclick="handleGoogle()">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Sign up with Google
+        </button>
+        <p class="form-footer-note">Already have an account? <a href="#" onclick="switchTab('signin'); return false;">Sign in</a></p>
+      </form>
+
+      <!-- SUCCESS -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-check">✓</div>
+        <h2 class="success-title" id="successTitle">Welcome to Folio!</h2>
+        <p class="success-msg">Your literary journey begins now.</p>
+        <p class="success-redirect">Redirecting you to your library…</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
