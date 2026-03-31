@@ -195,6 +195,7 @@ function getMockSearchResults(query) {
       first_publish_year: 1997,
       cover_i: 5103624,
       subject: ['Fantasy', 'Young adult fiction', 'Wizards'],
+      genre: 'fantasy',
       edition_count: 215,
       number_of_pages_median: 309
     },
@@ -205,6 +206,7 @@ function getMockSearchResults(query) {
       first_publish_year: 1998,
       cover_i: 5103625,
       subject: ['Fantasy', 'Young adult fiction', 'Wizards'],
+      genre: 'fantasy',
       edition_count: 175,
       number_of_pages_median: 341
     },
@@ -215,6 +217,7 @@ function getMockSearchResults(query) {
       first_publish_year: 1960,
       cover_i: 5103626,
       subject: ['Fiction', 'Classic literature'],
+      genre: 'literary',
       edition_count: 220,
       number_of_pages_median: 326
     },
@@ -225,6 +228,7 @@ function getMockSearchResults(query) {
       first_publish_year: 1949,
       cover_i: 5103627,
       subject: ['Dystopian', 'Science fiction', 'Political fiction'],
+      genre: 'science fiction',
       edition_count: 311,
       number_of_pages_median: 328
     },
@@ -235,8 +239,31 @@ function getMockSearchResults(query) {
       first_publish_year: 1925,
       cover_i: 5103628,
       subject: ['Literary fiction', 'Classic', 'Romance'],
+      genre: 'literary',
       edition_count: 289,
       number_of_pages_median: 180
+    },
+    {
+      key: '/works/OL45888W',
+      title: 'The Midnight Library',
+      author_name: ['Matt Haig'],
+      first_publish_year: 2020,
+      cover_i: 5103629,
+      subject: ['Fiction', 'Contemporary', 'Fantasy'],
+      genre: 'fiction',
+      edition_count: 145,
+      number_of_pages_median: 338
+    },
+    {
+      key: '/works/OL45889W',
+      title: 'The Girl with the Dragon Tattoo',
+      author_name: ['Stieg Larsson'],
+      first_publish_year: 2005,
+      cover_i: 5103630,
+      subject: ['Mystery', 'Thriller', 'Crime'],
+      genre: 'thriller',
+      edition_count: 198,
+      number_of_pages_median: 465
     }
   ];
 

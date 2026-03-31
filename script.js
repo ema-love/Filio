@@ -193,6 +193,7 @@ async function initIndex() {
   document.getElementById('searchBtn')?.addEventListener('click', doSearch);
   document.getElementById('searchInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
   document.getElementById('decadeFilter')?.addEventListener('change', applyFiltersAndSort);
+  document.getElementById('genreFilter')?.addEventListener('change', applyFiltersAndSort);
   document.getElementById('sortBy')?.addEventListener('change', applyFiltersAndSort);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 }
@@ -240,12 +241,17 @@ function applyFiltersAndSort() {
 
   let results = [..._allResults];
   const dec  = document.getElementById('decadeFilter')?.value || '';
+  const genre = document.getElementById('genreFilter')?.value || '';
   const sort = document.getElementById('sortBy')?.value || 'relevance';
 
   if (dec === 'pre1970') results = results.filter(b => b.first_publish_year && b.first_publish_year < 1970);
   else if (dec) {
     const s = parseInt(dec);
     results = results.filter(b => b.first_publish_year && b.first_publish_year >= s && b.first_publish_year < s + 10);
+  }
+
+  if (genre) {
+    results = results.filter(b => b.genre && b.genre.toLowerCase() === genre.toLowerCase());
   }
 
   if (sort === 'new')        results.sort((a, b) => (b.first_publish_year || 0) - (a.first_publish_year || 0));
